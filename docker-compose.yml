@@ -1,0 +1,34 @@
+version: '2'
+services:
+  webapp:
+    container_name: webapp
+    build: ./webapp
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongodb/promotions
+      - MONGO_USER=productListUser
+      - MONGO_PASS=productListPassword
+  mongodb:
+    container_name: mongodb
+    build: ./products-db
+    ports:
+      - "20217:20217"
+  mongo-loader:
+    container_name: mongo-loader
+    build:
+      context: ./products-db
+      dockerfile: Dockerfile-loader
+    ports:
+      - "20218:20218"
+
+#  mongo-loader:
+#    image: mongo:3.6.8
+#    volumes:
+#      - ./products-db/database:/database
+#    command: bash -c '/database/import.sh mongodb'
+#    depends_on:
+#      - mongodb

@@ -1,0 +1,24 @@
+{
+  "name": "lider_palindromos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Palindrome products discount prototype web server.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js --unhandled-rejections=strict",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "deployprod": "npm install --prefix client && npm run build --prefix client",
+    "prod": "npm deployprod && npm start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.26",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {}
+}
