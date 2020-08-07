@@ -1,0 +1,1 @@
+export const SEARCH_PRODUCTS = 'search_products';
